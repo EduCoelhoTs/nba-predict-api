@@ -1,0 +1,216 @@
+package port_test
+
+import (
+	"testing"
+
+	"github.com/EduCoelhoTs/nba-predict-api/internal/core/domain"
+	mock_port "github.com/EduCoelhoTs/nba-predict-api/internal/core/port/mock"
+	"github.com/EduCoelhoTs/nba-predict-api/pkg/xuuid"
+	"github.com/stretchr/testify/require"
+	"go.uber.org/mock/gomock"
+)
+
+func TestUserService(t *testing.T) {
+
+	testCtlr := gomock.NewController(t)
+	defer testCtlr.Finish()
+
+	user := domain.NewUser(
+		xuuid.NewV7(),
+		"John",
+		"Silva",
+		"johnSilva@gmail.com",
+		"2000-10-22",
+		"12345678",
+	)
+
+	mockUserService := mock_port.NewMockUserServiceInterface(testCtlr)
+	mockUserService.EXPECT().CreateUser(
+		user.GetFirstName(),
+		user.GetLastName(),
+		user.GetEmail(),
+		user.GetBirthDate(),
+		user.GetPassword(),
+	).Return(user, nil).Times(1)
+
+	mockUserService.EXPECT().GetUserByID(user.GetID()).Return(user, nil).Times(1)
+	mockUserService.EXPECT().GetAllUsers().Return([]domain.User{user}, nil).Times(1)
+	mockUserService.EXPECT().GetUserByEmail(user.GetEmail()).Return(user, nil).Times(1)
+	mockUserService.EXPECT().UpdateUser(
+		user.GetID(),
+		user.GetFirstName(),
+		user.GetLastName(),
+		user.GetEmail(),
+		user.GetBirthDate(),
+		user.GetPassword(),
+	).Return(user, nil).Times(1)
+	mockUserService.EXPECT().DeleteUser(user.GetID()).Return(nil).Times(1)
+
+	testCases := []struct {
+		name string
+		fn   func(t *testing.T)
+	}{
+		{
+			name: "should create user",
+			fn: func(t *testing.T) {
+				createdUser, err := mockUserService.CreateUser(
+					user.GetFirstName(),
+					user.GetLastName(),
+					user.GetEmail(),
+					user.GetBirthDate(),
+					user.GetPassword(),
+				)
+
+				require.Nil(t, err)
+				require.Equal(t, user.GetID(), createdUser.GetID())
+			},
+		},
+		{
+			name: "should get user by id",
+			fn: func(t *testing.T) {
+				foundUser, err := mockUserService.GetUserByID(user.GetID())
+
+				require.Nil(t, err)
+				require.Equal(t, user.GetID(), foundUser.GetID())
+			},
+		},
+		{
+			name: "should get all users",
+			fn: func(t *testing.T) {
+				users, err := mockUserService.GetAllUsers()
+
+				require.Nil(t, err)
+				require.Len(t, users, 1)
+				require.Equal(t, user.GetID(), users[0].GetID())
+			},
+		},
+		{
+			name: "should get user by email",
+			fn: func(t *testing.T) {
+				foundUser, err := mockUserService.GetUserByEmail(user.GetEmail())
+
+				require.Nil(t, err)
+				require.Equal(t, user.GetID(), foundUser.GetID())
+			},
+		},
+		{
+			name: "should update user",
+			fn: func(t *testing.T) {
+				updatedUser, err := mockUserService.UpdateUser(
+					user.GetID(),
+					user.GetFirstName(),
+					user.GetLastName(),
+					user.GetEmail(),
+					user.GetBirthDate(),
+					user.GetPassword(),
+				)
+
+				require.Nil(t, err)
+				require.Equal(t, user.GetID(), updatedUser.GetID())
+			},
+		},
+		{
+			name: "should delete user",
+			fn: func(t *testing.T) {
+				err := mockUserService.DeleteUser(user.GetID())
+
+				require.Nil(t, err)
+			},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, tc.fn)
+	}
+}
+
+func TestUserRepository(t *testing.T) {
+	testCtlr := gomock.NewController(t)
+	defer testCtlr.Finish()
+
+	user := domain.NewUser(
+		xuuid.NewV7(),
+		"John",
+		"Silva",
+		"johnSilva@gmail.com",
+		"2000-10-22",
+		"12345678",
+	)
+
+	mockUserRepository := mock_port.NewMockUserRepositoryInterface(testCtlr)
+	mockUserRepository.EXPECT().CreateUser(
+		user,
+	).Return(nil).Times(1)
+
+	mockUserRepository.EXPECT().GetUserByID(user.GetID()).Return(user, nil).Times(1)
+	mockUserRepository.EXPECT().GetAllUsers().Return([]domain.User{user}, nil).Times(1)
+	mockUserRepository.EXPECT().GetUserByEmail(user.GetEmail()).Return(user, nil).Times(1)
+	mockUserRepository.EXPECT().UpdateUser(
+		user,
+	).Return(nil).Times(1)
+	mockUserRepository.EXPECT().DeleteUser(user.GetID()).Return(nil).Times(1)
+
+	testCases := []struct {
+		name string
+		fn   func(t *testing.T)
+	}{
+		{
+			name: "should create user",
+			fn: func(t *testing.T) {
+				err := mockUserRepository.CreateUser(user)
+
+				require.Nil(t, err)
+			},
+		},
+		{
+			name: "should get user by id",
+			fn: func(t *testing.T) {
+				foundUser, err := mockUserRepository.GetUserByID(user.GetID())
+
+				require.Nil(t, err)
+				require.Equal(t, user.GetID(), foundUser.GetID())
+			},
+		},
+		{
+			name: "should get all users",
+			fn: func(t *testing.T) {
+				users, err := mockUserRepository.GetAllUsers()
+
+				require.Nil(t, err)
+				require.Len(t, users, 1)
+				require.Equal(t, user.GetID(), users[0].GetID())
+			},
+		},
+		{
+			name: "should get user by email",
+			fn: func(t *testing.T) {
+				foundUser, err := mockUserRepository.GetUserByEmail(user.GetEmail())
+
+				require.Nil(t, err)
+				require.Equal(t, user.GetID(), foundUser.GetID())
+			},
+		},
+		{
+			name: "should update user",
+			fn: func(t *testing.T) {
+				err := mockUserRepository.UpdateUser(
+					user,
+				)
+
+				require.Nil(t, err)
+			},
+		},
+		{
+			name: "should delete user",
+			fn: func(t *testing.T) {
+				err := mockUserRepository.DeleteUser(user.GetID())
+
+				require.Nil(t, err)
+			},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, tc.fn)
+	}
+}
