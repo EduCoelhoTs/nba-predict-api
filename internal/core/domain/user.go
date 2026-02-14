@@ -3,7 +3,7 @@ package domain
 import "github.com/EduCoelhoTs/nba-predict-api/pkg/xvalidator"
 
 type user struct {
-	ID        string `validate:"required,uuid7"`
+	ID        string `validate:"required,uuid"`
 	FirstName string `validate:"required"`
 	LastName  string `validate:"required"`
 	Email     string `validate:"required,email"`

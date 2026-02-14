@@ -2,7 +2,17 @@ module github.com/EduCoelhoTs/nba-predict-api
 
 go 1.25.6
 
-require github.com/go-playground/validator/v10 v10.30.1
+require (
+	github.com/go-playground/validator/v10 v10.30.1
+	github.com/stretchr/testify v1.11.1
+	go.uber.org/mock v0.6.0
+)
+
+require (
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
+)
 
 require (
 	github.com/gabriel-vasile/mimetype v1.4.12 // indirect
