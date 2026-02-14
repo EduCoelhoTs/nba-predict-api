@@ -15,7 +15,7 @@ func ValidateStruct(s any) error {
 		if errors.As(err, &validationErrors) {
 			var ResultError error
 			for _, err := range validationErrors {
-				errMsg := fmt.Errorf("field %s is invalid. Error: %s", err.Field(), err.Error())
+				errMsg := fmt.Errorf("field %s is invalid. Field must be: %s", err.Field(), err.ActualTag())
 				ResultError = errors.Join(ResultError, errMsg)
 			}
 			return ResultError
