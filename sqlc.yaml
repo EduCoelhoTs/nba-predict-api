@@ -1,0 +1,18 @@
+version: "2"
+sql:
+  - engine: "postgresql"
+    queries: "internal/infra/database/querie"
+    schema: "internal/infra/database/migration"
+    gen:
+      go:
+        package: "tutorial"
+        out: "tutorial"
+        sql_package: "pgx/v5"
+        overrides:
+        - db_type: "uuid"
+          nullable: false
+          go_type:
+            import: "github.com/google/uuid"
+            type: "UUID"
+        - column: "users.birth_date"
+          go_type: "time.Time"
