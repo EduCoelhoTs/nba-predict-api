@@ -3,13 +3,13 @@
 //   sqlc v1.30.0
 // source: user.sql
 
-package postgres
+package sqlc
 
 import (
 	"context"
+	"time"
 
 	"github.com/google/uuid"
-	"github.com/jackc/pgx/v5/pgtype"
 )
 
 const createUser = `-- name: CreateUser :exec
@@ -23,7 +23,7 @@ type CreateUserParams struct {
 	LastName  string
 	Email     string
 	Password  string
-	BirthDate pgtype.Date
+	BirthDate time.Time
 }
 
 func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) error {
@@ -144,7 +144,7 @@ type UpdateUserParams struct {
 	LastName  string
 	Email     string
 	Password  string
-	BirthDate pgtype.Date
+	BirthDate time.Time
 }
 
 func (q *Queries) UpdateUser(ctx context.Context, arg UpdateUserParams) error {

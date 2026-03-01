@@ -2,9 +2,11 @@
 // versions:
 //   sqlc v1.30.0
 
-package postgres
+package sqlc
 
 import (
+	"time"
+
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
 )
@@ -15,7 +17,7 @@ type AuthUser struct {
 	LastName  string
 	Email     string
 	Password  string
-	BirthDate pgtype.Date
+	BirthDate time.Time
 	CreatedAt pgtype.Timestamptz
 	UpdatedAt pgtype.Timestamptz
 }

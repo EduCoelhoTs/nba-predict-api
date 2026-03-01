@@ -5,8 +5,8 @@ sql:
     schema: "internal/infra/database/migration"
     gen:
       go:
-        package: "postgres"
-        out: "internal/adapter/repository/postgres"
+        package: "sqlc"
+        out: "internal/adapter/repository/postgres/sqlc"
         sql_package: "pgx/v5"
         overrides:
         - db_type: "uuid"
@@ -14,5 +14,5 @@ sql:
           go_type:
             import: "github.com/google/uuid"
             type: "UUID"
-        - column: "users.birth_date"
+        - column: "auth.users.birth_date"
           go_type: "time.Time"
