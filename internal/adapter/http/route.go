@@ -1,12 +1,12 @@
-package http
+package _http
 
 import "net/http"
 
-type Routes = []Route
+type Routes = map[string][]Route
 
 type Route struct {
 	Method      string
 	Path        string
-	HandlerFunc func()
+	HandlerFunc http.HandlerFunc
 	Middlewares []func(h http.Handler) http.Handler
 }

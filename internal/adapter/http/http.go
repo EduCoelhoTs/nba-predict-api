@@ -1,4 +1,4 @@
-package http
+package _http
 
 import (
 	"net/http"
@@ -36,4 +36,8 @@ func NewHttpServer(handler HttpHandler, routes Routes, addr *string) *httpServer
 
 func (s *httpServer) Start() error {
 	return s.svr.ListenAndServe()
+}
+
+func (s *httpServer) Shutdown() error {
+	return s.svr.Close()
 }
