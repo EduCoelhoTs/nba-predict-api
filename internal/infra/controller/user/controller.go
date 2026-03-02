@@ -10,28 +10,24 @@ import (
 	"github.com/EduCoelhoTs/nba-predict-api/pkg/xvalidator"
 )
 
-type UseCase struct {
+type controller struct {
 	CreateUserUseCase userusecase.CreateUserUseCase
 }
 
-type controller struct {
-	useCase UseCase
-}
-
-func NewController(useCase UseCase) *controller {
-	return &controller{useCase: useCase}
+func NewController(createUser userusecase.CreateUserUseCase) *controller {
+	return &controller{CreateUserUseCase: createUser}
 }
 
 func (c *controller) Create(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	var body CreateUserRequestDTO
 	if err := xjson.Decode(r.Body, &body); err != nil {
-		fmt.Printf("usercontroller.create decode body error: %w", err)
+		fmt.Printf("usercontroller.create decode body error: %v", err)
 		xjson.ResponseHttpError(w, http.StatusBadRequest, infraerrors.ERR_INTERNAL_SERVER_ERROR)
 	}
 
 	if err := xvalidator.ValidateStruct(body); err != nil {
-		fmt.Printf("usercontroller.create validate body error: %w", err)
+		fmt.Printf("usercontroller.create validate body error: %v", err)
 		xjson.ResponseHttpError(w, http.StatusBadRequest, err.Error())
 		return
 	}
@@ -44,9 +40,9 @@ func (c *controller) Create(w http.ResponseWriter, r *http.Request) {
 		Password:  body.Password,
 	}
 
-	output, err := c.useCase.CreateUserUseCase.Execute(r.Context(), input)
+	output, err := c.CreateUserUseCase.Execute(r.Context(), input)
 	if err != nil {
-		fmt.Printf("usercontroller.create execute usecase error: %w", err)
+		fmt.Printf("usercontroller.create execute usecase error: %v", err)
 		xjson.ResponseHttpError(w, http.StatusInternalServerError, infraerrors.ERR_INTERNAL_SERVER_ERROR)
 		return
 	}
