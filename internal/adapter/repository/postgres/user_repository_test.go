@@ -80,7 +80,7 @@ func createValidTestUser() domain.User {
 		"João",
 		"Silva",
 		"joao@example.com",
-		"1990-01-15",
+		"1990-01-15 10:00:00",
 		"password1234",
 	)
 }
@@ -133,7 +133,7 @@ func TestUserRepository_CreateUser(t *testing.T) {
 				"João",
 				"Silva",
 				"joao@example.com",
-				"1990-01-15",
+				"1990-01-15 10:00:00",
 				"password1234",
 			),
 			mockError: nil,

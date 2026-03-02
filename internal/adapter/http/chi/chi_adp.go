@@ -21,8 +21,7 @@ func (h *chiHandler) RegisterRoutes(routes _http.Routes) http.Handler {
 	for key, route := range routes {
 		h.handler.Route(key, func(rt chi.Router) {
 			for _, r := range route {
-				rt.Use(r.Middlewares...)
-				rt.Method(r.Method, r.Path, r.HandlerFunc)
+				rt.With(r.Middlewares...).Method(r.Method, r.Path, r.HandlerFunc)
 			}
 		})
 	}
