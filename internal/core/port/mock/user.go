@@ -13,7 +13,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	domain "github.com/EduCoelhoTs/nba-predict-api/internal/core/domain"
+	domain "github.com/EduCoelhoTs/base-hex-arq-api/internal/core/domain"
 	gomock "go.uber.org/mock/gomock"
 )
 

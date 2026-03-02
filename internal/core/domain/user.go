@@ -1,6 +1,6 @@
 package domain
 
-import "github.com/EduCoelhoTs/nba-predict-api/pkg/xvalidator"
+import "github.com/EduCoelhoTs/base-hex-arq-api/pkg/xvalidator"
 
 type user struct {
 	ID        string `validate:"required,uuid"`

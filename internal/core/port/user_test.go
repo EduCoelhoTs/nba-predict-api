@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/EduCoelhoTs/nba-predict-api/internal/core/domain"
-	mock_port "github.com/EduCoelhoTs/nba-predict-api/internal/core/port/mock"
-	"github.com/EduCoelhoTs/nba-predict-api/pkg/xuuid"
+	"github.com/EduCoelhoTs/base-hex-arq-api/internal/core/domain"
+	mock_port "github.com/EduCoelhoTs/base-hex-arq-api/internal/core/port/mock"
+	"github.com/EduCoelhoTs/base-hex-arq-api/pkg/xuuid"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"
 )

@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"net/http"
 
-	userusecase "github.com/EduCoelhoTs/nba-predict-api/internal/application/usecase/user"
-	infraerrors "github.com/EduCoelhoTs/nba-predict-api/internal/infra/error"
-	"github.com/EduCoelhoTs/nba-predict-api/pkg/xjson"
-	"github.com/EduCoelhoTs/nba-predict-api/pkg/xvalidator"
+	userusecase "github.com/EduCoelhoTs/base-hex-arq-api/internal/application/usecase/user"
+	infraerrors "github.com/EduCoelhoTs/base-hex-arq-api/internal/infra/error"
+	"github.com/EduCoelhoTs/base-hex-arq-api/pkg/xjson"
+	"github.com/EduCoelhoTs/base-hex-arq-api/pkg/xvalidator"
 )
 
 type controller struct {

@@ -13,7 +13,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	userusecase "github.com/EduCoelhoTs/nba-predict-api/internal/application/usecase/user"
+	userusecase "github.com/EduCoelhoTs/base-hex-arq-api/internal/application/usecase/user"
 	gomock "go.uber.org/mock/gomock"
 )
 

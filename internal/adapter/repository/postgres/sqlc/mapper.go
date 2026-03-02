@@ -1,8 +1,8 @@
 package sqlc
 
 import (
-	"github.com/EduCoelhoTs/nba-predict-api/internal/core/domain"
-	"github.com/EduCoelhoTs/nba-predict-api/pkg/xdate"
+	"github.com/EduCoelhoTs/base-hex-arq-api/internal/core/domain"
+	"github.com/EduCoelhoTs/base-hex-arq-api/pkg/xdate"
 )
 
 func (au *AuthUser) ToDomain() domain.User {

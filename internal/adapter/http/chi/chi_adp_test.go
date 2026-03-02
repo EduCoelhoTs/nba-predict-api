@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	_http "github.com/EduCoelhoTs/nba-predict-api/internal/adapter/http"
+	_http "github.com/EduCoelhoTs/base-hex-arq-api/internal/adapter/http"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -68,12 +68,12 @@ func TestNewChiHandler(t *testing.T) {
 // TestRegisterRoutes testa o registro de rotas
 func TestRegisterRoutes(t *testing.T) {
 	tests := []struct {
-		name          string
-		routes        _http.Routes
-		testMethod    string
-		testPath      string
-		expectedCode  int
-		expectedBody  string
+		name         string
+		routes       _http.Routes
+		testMethod   string
+		testPath     string
+		expectedCode int
+		expectedBody string
 	}{
 		{
 			name: "deve registrar uma rota GET simples",
@@ -334,8 +334,8 @@ func TestIntegrationRegisterRoutesAndServe(t *testing.T) {
 	routes := _http.Routes{
 		"/api": {
 			{
-				Method:      "GET",
-				Path:        "/health",
+				Method: "GET",
+				Path:   "/health",
 				HandlerFunc: func(w http.ResponseWriter, r *http.Request) {
 					w.Header().Set("Content-Type", "application/json")
 					w.WriteHeader(http.StatusOK)

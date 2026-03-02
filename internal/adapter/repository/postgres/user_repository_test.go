@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/EduCoelhoTs/nba-predict-api/internal/adapter/repository/postgres/sqlc"
-	"github.com/EduCoelhoTs/nba-predict-api/internal/core/domain"
+	"github.com/EduCoelhoTs/base-hex-arq-api/internal/adapter/repository/postgres/sqlc"
+	"github.com/EduCoelhoTs/base-hex-arq-api/internal/core/domain"
 	"github.com/google/uuid"
 )
 

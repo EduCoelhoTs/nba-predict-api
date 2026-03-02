@@ -3,9 +3,9 @@ package domain_test
 import (
 	"testing"
 
-	"github.com/EduCoelhoTs/nba-predict-api/internal/core/domain"
-	mock_domain "github.com/EduCoelhoTs/nba-predict-api/internal/core/domain/mock"
-	"github.com/EduCoelhoTs/nba-predict-api/pkg/xuuid"
+	"github.com/EduCoelhoTs/base-hex-arq-api/internal/core/domain"
+	mock_domain "github.com/EduCoelhoTs/base-hex-arq-api/internal/core/domain/mock"
+	"github.com/EduCoelhoTs/base-hex-arq-api/pkg/xuuid"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"
 )

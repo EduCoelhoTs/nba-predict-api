@@ -3,9 +3,9 @@ package service
 import (
 	"context"
 
-	"github.com/EduCoelhoTs/nba-predict-api/internal/core/domain"
-	"github.com/EduCoelhoTs/nba-predict-api/internal/core/port"
-	"github.com/EduCoelhoTs/nba-predict-api/pkg/xuuid"
+	"github.com/EduCoelhoTs/base-hex-arq-api/internal/core/domain"
+	"github.com/EduCoelhoTs/base-hex-arq-api/internal/core/port"
+	"github.com/EduCoelhoTs/base-hex-arq-api/pkg/xuuid"
 )
 
 type User struct {

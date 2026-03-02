@@ -3,7 +3,7 @@ package _chi
 import (
 	"net/http"
 
-	_http "github.com/EduCoelhoTs/nba-predict-api/internal/adapter/http"
+	_http "github.com/EduCoelhoTs/base-hex-arq-api/internal/adapter/http"
 	"github.com/go-chi/chi/v5"
 )
 

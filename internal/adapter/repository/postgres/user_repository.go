@@ -3,11 +3,11 @@ package postgres
 import (
 	"context"
 
-	"github.com/EduCoelhoTs/nba-predict-api/internal/adapter/repository/postgres/sqlc"
-	"github.com/EduCoelhoTs/nba-predict-api/internal/core/domain"
-	"github.com/EduCoelhoTs/nba-predict-api/internal/core/port"
-	"github.com/EduCoelhoTs/nba-predict-api/pkg/xdate"
-	"github.com/EduCoelhoTs/nba-predict-api/pkg/xuuid"
+	"github.com/EduCoelhoTs/base-hex-arq-api/internal/adapter/repository/postgres/sqlc"
+	"github.com/EduCoelhoTs/base-hex-arq-api/internal/core/domain"
+	"github.com/EduCoelhoTs/base-hex-arq-api/internal/core/port"
+	"github.com/EduCoelhoTs/base-hex-arq-api/pkg/xdate"
+	"github.com/EduCoelhoTs/base-hex-arq-api/pkg/xuuid"
 	"github.com/google/uuid"
 )
 

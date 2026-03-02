@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	userusecase "github.com/EduCoelhoTs/nba-predict-api/internal/application/usecase/user"
-	mock_userusecase "github.com/EduCoelhoTs/nba-predict-api/internal/application/usecase/user/mock"
+	userusecase "github.com/EduCoelhoTs/base-hex-arq-api/internal/application/usecase/user"
+	mock_userusecase "github.com/EduCoelhoTs/base-hex-arq-api/internal/application/usecase/user/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"

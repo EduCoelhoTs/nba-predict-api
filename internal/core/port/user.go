@@ -3,7 +3,7 @@ package port
 import (
 	"context"
 
-	"github.com/EduCoelhoTs/nba-predict-api/internal/core/domain"
+	"github.com/EduCoelhoTs/base-hex-arq-api/internal/core/domain"
 )
 
 type UserServiceInterface interface {

@@ -8,8 +8,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	userusecase "github.com/EduCoelhoTs/nba-predict-api/internal/application/usecase/user"
-	usercontroller "github.com/EduCoelhoTs/nba-predict-api/internal/infra/controller/user"
+	userusecase "github.com/EduCoelhoTs/base-hex-arq-api/internal/application/usecase/user"
+	usercontroller "github.com/EduCoelhoTs/base-hex-arq-api/internal/infra/controller/user"
 	"github.com/stretchr/testify/require"
 )
 
