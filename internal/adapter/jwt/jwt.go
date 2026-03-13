@@ -1,6 +1,7 @@
 package _jwt
 
 import (
+	"crypto/ecdsa"
 	"fmt"
 	"time"
 
@@ -8,7 +9,7 @@ import (
 )
 
 type JWTService struct {
-	secret  string
+	secret  *ecdsa.PrivateKey
 	hourExp int
 }
 
@@ -17,27 +18,27 @@ type Claims struct {
 	jwt.RegisteredClaims
 }
 
-func NewJWTService(secret string) *JWTService {
-	return &JWTService{secret: secret}
+func NewJWTService(secret *ecdsa.PrivateKey, hoursExp int) *JWTService {
+	return &JWTService{secret: secret, hourExp: hoursExp}
 }
 
 func (s *JWTService) Generate(userID string) (string, error) {
-	token := jwt.NewWithClaims(jwt.SigningMethodES256, Claims{
+	token := jwt.NewWithClaims(jwt.SigningMethodES256, &Claims{
 		UserID: userID,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Duration(s.hourExp) * time.Hour)),
 		},
 	})
 
-	return token.SignedString([]byte(s.secret))
+	return token.SignedString(s.secret)
 }
 
 func (s *JWTService) Validate(tokenString string) (string, error) {
 	token, err := jwt.ParseWithClaims(
 		tokenString,
-		Claims{},
+		&Claims{},
 		func(t *jwt.Token) (any, error) {
-			return []byte(s.secret), nil
+			return &s.secret.PublicKey, nil
 		},
 	)
 
@@ -45,7 +46,7 @@ func (s *JWTService) Validate(tokenString string) (string, error) {
 		return "", fmt.Errorf("adapter.jwt.validate error: %w", err)
 	}
 
-	if claims, ok := token.Claims.(Claims); ok && token.Valid {
+	if claims, ok := token.Claims.(*Claims); ok && token.Valid {
 		return claims.UserID, nil
 	}
 
