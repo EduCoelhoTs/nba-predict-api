@@ -5,7 +5,7 @@ import (
 
 	"github.com/EduCoelhoTs/base-hex-arq-api/internal/adapter/repository/postgres/sqlc"
 	"github.com/EduCoelhoTs/base-hex-arq-api/internal/core/domain"
-	"github.com/EduCoelhoTs/base-hex-arq-api/internal/core/port"
+	port "github.com/EduCoelhoTs/base-hex-arq-api/internal/core/port/user"
 	"github.com/EduCoelhoTs/base-hex-arq-api/pkg/xdate"
 	"github.com/EduCoelhoTs/base-hex-arq-api/pkg/xuuid"
 	"github.com/google/uuid"

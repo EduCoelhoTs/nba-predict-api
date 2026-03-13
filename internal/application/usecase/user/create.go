@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/EduCoelhoTs/base-hex-arq-api/internal/core/domain"
-	"github.com/EduCoelhoTs/base-hex-arq-api/internal/core/port"
+	port "github.com/EduCoelhoTs/base-hex-arq-api/internal/core/port/user"
 	"github.com/EduCoelhoTs/base-hex-arq-api/pkg/xuuid"
 )
 

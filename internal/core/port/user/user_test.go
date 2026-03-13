@@ -1,11 +1,11 @@
-package port_test
+package userport_test
 
 import (
 	"context"
 	"testing"
 
 	"github.com/EduCoelhoTs/base-hex-arq-api/internal/core/domain"
-	mock_port "github.com/EduCoelhoTs/base-hex-arq-api/internal/core/port/mock"
+	mock_port "github.com/EduCoelhoTs/base-hex-arq-api/internal/core/port/user/mock"
 	"github.com/EduCoelhoTs/base-hex-arq-api/pkg/xuuid"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"
