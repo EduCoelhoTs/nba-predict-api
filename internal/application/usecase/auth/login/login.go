@@ -8,25 +8,34 @@ import (
 	"github.com/EduCoelhoTs/base-hex-arq-api/pkg/xcrypto"
 )
 
-type LoginUseCase struct {
+type LoginInput struct {
+	Email    string
+	Password string
+}
+
+type LoginUseCase interface {
+	Execute(ctx context.Context, input LoginInput) (string, error)
+}
+
+type loginUseCase struct {
 	tokenService   authport.TokenService
 	userRepository userport.UserRepositoryInterface
 }
 
-func NewLoginUseCase(tokenService authport.TokenService, userRepository userport.UserRepositoryInterface) *LoginUseCase {
-	return &LoginUseCase{
+func NewLoginUseCase(tokenService authport.TokenService, userRepository userport.UserRepositoryInterface) *loginUseCase {
+	return &loginUseCase{
 		tokenService:   tokenService,
 		userRepository: userRepository,
 	}
 }
 
-func (uc *LoginUseCase) Execute(ctx context.Context, email, password string) (string, error) {
-	user, err := uc.userRepository.GetUserByEmail(ctx, email)
+func (uc *loginUseCase) Execute(ctx context.Context, input LoginInput) (string, error) {
+	user, err := uc.userRepository.GetUserByEmail(ctx, input.Email)
 	if err != nil {
 		return "", err
 	}
 
-	if err := xcrypto.ComparePassword(user.GetPassword(), password); err != nil {
+	if err := xcrypto.ComparePassword(user.GetPassword(), input.Password); err != nil {
 		return "", err
 	}
 

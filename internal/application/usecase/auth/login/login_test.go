@@ -75,7 +75,10 @@ func TestLoginUseCase(t *testing.T) {
 
 			func(t *testing.T) {
 				useCase := loginusecase.NewLoginUseCase(tokenService, repository)
-				token, err := useCase.Execute(context.Background(), "teste@email.com", "password")
+				input := loginusecase.LoginInput{
+					"teste@email.com", "password",
+				}
+				token, err := useCase.Execute(context.Background(), input)
 
 				require.Nil(t, err)
 				require.NotEmpty(t, token)
@@ -86,7 +89,10 @@ func TestLoginUseCase(t *testing.T) {
 			"shoud return error if password is wrong",
 			func(t *testing.T) {
 				useCase := loginusecase.NewLoginUseCase(tokenService, repository)
-				token, err := useCase.Execute(context.Background(), "teste@email.com", "wrongpassword")
+				input := loginusecase.LoginInput{
+					"teste@email.com", "wrongpassword",
+				}
+				token, err := useCase.Execute(context.Background(), input)
 
 				require.Error(t, err)
 				require.Empty(t, token)
